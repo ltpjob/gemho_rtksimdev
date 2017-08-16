@@ -68,8 +68,8 @@ static int readOneSecData(QFile *f, QByteArray *data, QDateTime *dtime)
 
 static void *process_fileDataCollect(void *args)
 {
-    QString name_rover = "E:/GNSS/gushan_backup/20170730-67161949555780670670FF52.txt";
-    QString name_base = "E:/GNSS/gushan_backup/20170730-8719512552536752066EFF53.txt";
+    QString name_rover = "/home/ltp/GNSS/test_data/67.txt";
+    QString name_base = "/home/ltp/GNSS/test_data/87.txt";
     QFile file_rover(name_rover);
     QFile file_base(name_base);
     int flag_datatus = 0;
@@ -162,8 +162,8 @@ static void *process_simDev(void *args)
             {
                 head.start[0] = 0x55;
                 head.start[1] = 0xaa;
-                head.type = 1;
-                head.size = 2;
+                head.type = 2;
+                head.size = 0;
 
                 len = tcp->write((char *)&head, sizeof(head));
                 if(len<0)
@@ -217,8 +217,8 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         GemhoRtkSimDev *handle = new GemhoRtkSimDev;
 
-        handle->cpuid[2] = 0xaaaa;
-        handle->cpuid[1] = 0xbbbb;
+        handle->cpuid[2] = 0x0;
+        handle->cpuid[1] = 0x0;
         handle->cpuid[0] = 0+i;
         handle->port = 5886+i;
         handle->runFlag = 1;
