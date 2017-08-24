@@ -147,7 +147,10 @@ static void *process_simDev(void *args)
     while(handle->runFlag == 1)
     {
         if(tcpServ.waitForNewConnection(100) == false)
+        {
+            handle->df.popAllData();
             continue;
+        }
 
         QTcpSocket *tcp = tcpServ.nextPendingConnection();
         time.start();
@@ -213,7 +216,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_listdev.clear();
-    for(int i=0; i<4; i++)
+    for(int i=0; i<10; i++)
     {
         GemhoRtkSimDev *handle = new GemhoRtkSimDev;
 
