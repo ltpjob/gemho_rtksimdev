@@ -220,8 +220,8 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         GemhoRtkSimDev *handle = new GemhoRtkSimDev;
 
-        handle->cpuid[2] = 0x0;
-        handle->cpuid[1] = 0x0;
+        handle->cpuid[2] = 0x12345678;
+        handle->cpuid[1] = 0xabcdefab;
         handle->cpuid[0] = 0+i;
         handle->port = 5886+i;
         handle->runFlag = 1;
